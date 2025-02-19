@@ -11,6 +11,6 @@ use App\Router;
 
 $router = new Router(dirname(__DIR__) . '/views');
 $router
-    ->get('/blog', 'post/index.php', 'blog')
+    ->get('/', 'post/index.php', 'home')
     ->get('/blog/category', 'category/show.php', 'category')
     ->run();
