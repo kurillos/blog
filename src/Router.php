@@ -25,7 +25,8 @@ class Router {
 
     public function get(string $url, string $view, ?string $name = null)
     {
-        $this->router->map('GET', $url, function() use($view) {
+        $this->router->map('GET', $url, function($params) use($view) {
+            $router = $this;
             ob_start();
             require $this->viewPath . DIRECTORY_SEPARATOR . $view;
             $content = ob_get_clean();
@@ -35,11 +36,17 @@ class Router {
         return $this;
     }
 
+    public function url (string $name, array $params =[]): string
+    {
+        return $this->router->generate($name, $params);
+    }
+
     public function run(): self
     {
         $match = $this->router->match();
         if ($match && is_callable($match['target'])) {
-            call_user_func_array($match['target'], $match['params']);
+            $params = $match['params'];
+            call_user_func_array($match['target'], [$params]);
         } else {
             header($_SERVER["SERVER_PROTOCOL"] . '404 Not Found');
             echo ' 404 Not Found';

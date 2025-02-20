@@ -1,6 +1,8 @@
 <?php
 namespace App\Model;
-namespace App\Helpers\Text;
+
+use App\Helpers\Text;
+use \DateTime;
 
 class Post {
 
@@ -14,14 +16,35 @@ class Post {
 
     private $categories= [];
 
+    private $slug;
+
     public function getName(): string
     {
         return $this->name;
     }
 
+    public function getFormattedContent(): ?string
+    {
+        return nl2br(e($this->content));
+    }
+
     public function getExcerpt(): string
     {
-        return \App\Helpers\Text::excerpt($this->content);
+        return Text::excerpt($this->content);
+    }
+
+    public function getCreatedAt(): DateTime
+    {
+        return new DateTime($this->created_at);
     }
     
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function getID(): ?int
+    {
+        return $this->id;
+    }
 }
