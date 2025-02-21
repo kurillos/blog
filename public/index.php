@@ -28,6 +28,6 @@ use App\Router;
 $router = new Router(dirname(__DIR__) . '/views');
 $router
     ->get('/', 'post/index.php', 'home')
-    ->get('/blog/[*:slug]-[id:int]', 'post/show', 'post')
+    ->get('/blog/[*:slug]-[i:id]', 'post/show.php', 'post')
     ->get('/blog/category', 'category/show.php', 'category')
     ->run();
