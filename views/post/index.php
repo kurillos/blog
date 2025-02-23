@@ -30,7 +30,9 @@ $posts = $query->fetchAll(PDO::FETCH_CLASS, Post::class);
 <div class="row">
     <?php foreach($posts as $post): ?> 
         <div class="col-md-3"> 
-            <?php require 'card.php'; ?>
+            <?php 
+            $categories = $query->fetchAll();
+            require '../views/post/card.php'; ?>
         </div>
     <?php endforeach ?>
 </div>

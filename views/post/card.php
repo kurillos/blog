@@ -4,7 +4,6 @@
         <p class="text-muted"><?= $post->getCreatedAt()->format('d F Y') ?></p>
         <p><?= $post->getExcerpt() ?></p>
         <p>
-        <p>Catégories :</p>
         <?php foreach($categories as $category): ?>
         <a href="#"><?= e($category->getName()) ?></a>
         <?php endforeach ?>
